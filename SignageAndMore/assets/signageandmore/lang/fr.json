@@ -5,5 +5,6 @@
   "block-sign-anvil-*": "Enseigne enclume",
   "block-sign-hog-*": "Enseigne cochon",
   "block-sign-cauldron-*": "Enseigne chaudron",
-  "signageandmore:requirebracket": "Doit être fixé sur une potence"
+  "placefailure-signageandmore:Sign.RequireBracket": "Doit être fixé sur une potence",
+  "placefailure-signageandmore:Bracket.AlreadyOccupied": "Cette potence a déjà un objet accroché"
 }

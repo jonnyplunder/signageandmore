@@ -12,20 +12,18 @@
 		"blackbronze3": [16,16],
 		"lead": [16,16],
 		"lead2": [16,16],
-		"iron": [16,16],
-		"cauldrontext": [16,16]
+		"iron": [16,16]
 	},
 	"textures": {
-		"cauldrontext": "block/sign/cauldrontext",
 		"lead": "block/metal/ingot/lead",
 		"lead2": "block/metal/plate/lead"
 	},
 	"elements": [
 		{
 			"name": "all",
-			"from": [ 8.0, 0.0, 8.0 ],
-			"to": [ 8.0, 0.0, 8.0 ],
-			"rotationOrigin": [ 8.0, 0.0, 8.0 ],
+			"from": [ 9.5, 0.0, 8.0 ],
+			"to": [ 9.5, 0.0, 8.0 ],
+			"rotationOrigin": [ 9.5, 0.0, 8.0 ],
 			"faces": {
 				"north": { "texture": "#lead2", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
 				"east": { "texture": "#lead2", "uv": [ 0.0, 0.0, 0.5, 0.5 ], "enabled": false },
@@ -526,36 +524,6 @@
 							]
 						}
 					]
-				},
-				{
-					"name": "designS",
-					"from": [ -6.5, 2.5, 0.76 ],
-					"to": [ 6.5, 9.5, 0.76 ],
-					"renderInEditor": false,
-					"rotationOrigin": [ -6.5, 2.5, 0.76 ],
-					"faces": {
-						"north": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 7.0 ], "enabled": false },
-						"east": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 0.5, 7.0 ], "enabled": false },
-						"south": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 7.0 ], "windMode": [-1,-1,-1,-1] },
-						"west": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 0.5, 7.0 ], "enabled": false },
-						"up": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 0.5 ], "enabled": false },
-						"down": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 0.5 ], "enabled": false }
-					}
-				},
-				{
-					"name": "designN",
-					"from": [ -6.5, 2.5, -0.76 ],
-					"to": [ 6.5, 9.5, -0.76 ],
-					"renderInEditor": false,
-					"rotationOrigin": [ -6.5, 2.5, -0.75 ],
-					"faces": {
-						"north": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 7.0 ] },
-						"east": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 0.5, 7.0 ], "enabled": false },
-						"south": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 7.0 ], "enabled": false },
-						"west": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 0.5, 7.0 ], "enabled": false },
-						"up": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 0.5 ], "enabled": false },
-						"down": { "texture": "#cauldrontext", "uv": [ 0.0, 0.0, 13.0, 0.5 ], "enabled": false }
-					}
 				}
 			]
 		}

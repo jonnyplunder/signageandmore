@@ -16,23 +16,22 @@ public static class MountableBlockConfig
 
     public static void Load(JsonObject? attributes)
     {
+        if (attributes?["mountableBlocks"].Exists == true)
+        {
+            string?[]? fromJson = attributes["mountableBlocks"].AsArray<string>();
+            if (fromJson is { Length: > 0 })
+            {
+                patterns = Array.ConvertAll(fromJson, static s => s ?? string.Empty);
+                return;
+            }
+        }
+
         patterns = DefaultPatterns;
+    }
 
-        if (attributes?.IsTrue("mountableBlocksFromDefault") == false)
-        {
-            patterns = [];
-        }
-
-        if (attributes == null || !attributes["mountableBlocks"].Exists)
-        {
-            return;
-        }
-
-        string[]? fromJson = attributes["mountableBlocks"].AsArray<string>();
-        if (fromJson is { Length: > 0 })
-        {
-            patterns = Array.ConvertAll(fromJson, static s => s ?? string.Empty);
-        }
+    public static bool IsLantern(Vintagestory.API.Common.Block block)
+    {
+        return block?.Code != null && WildcardUtil.Match("game:lantern-*", block.Code.ToString());
     }
 
     public static bool IsMountable(Vintagestory.API.Common.Block block)

@@ -47,4 +47,6 @@ Launch profile **Client** (or **Server**) in Visual Studio uses `--addModPath` s
 
 ## License
 
-License to be decided.
+[Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0).
+
+You may copy, modify, and redistribute this mod for **non-commercial** purposes, as long as you credit **FuegoFish** and **RodinPandarex**. Commercial use is not permitted. See [LICENSE](LICENSE) for the full terms.

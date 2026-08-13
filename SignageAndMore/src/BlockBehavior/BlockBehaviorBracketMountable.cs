@@ -6,7 +6,7 @@ using Vintagestory.API.MathTools;
 namespace SignageAndMore.BlockBehavior;
 
 /// <summary>
-/// Allows a block to be placed only on <see cref="BracketBlock"/> mount faces (not on walls).
+/// Allows a block to be placed only on <see cref="BracketBlock"/>, hanging under the arm tip.
 /// </summary>
 public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavior
 {
@@ -34,32 +34,27 @@ public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavi
     {
         handling = EnumHandling.PreventDefault;
 
-        BlockFacing supportFace = blockSel.Face.Opposite;
-        BlockPos supportPos = blockSel.Position.AddCopy(supportFace);
-        Vintagestory.API.Common.Block supportBlock = world.BlockAccessor.GetBlock(supportPos);
-
-        if (!BracketBlock.IsBracket(supportBlock))
+        if (!TryResolveBracket(world, blockSel, ref failureCode, out BlockPos supportPos, out BracketBlock bracket))
         {
-            failureCode = "signageandmore:requirebracket";
             return false;
         }
 
-        if (!supportBlock.CanAttachBlockAt(world.BlockAccessor, block, supportPos, blockSel.Face))
-        {
-            failureCode = "signageandmore:requirebracket";
-            return false;
-        }
-
-        string outwardFacing = blockSel.Face.Opposite.Code;
+        string hangingFacing = bracket.GetSignFacing()?.Code ?? dropFacing;
         Vintagestory.API.Common.Block orientedBlock = world.BlockAccessor.GetBlock(
-            block.CodeWithVariant(facingCode, outwardFacing));
+            block.CodeWithVariant(facingCode, hangingFacing));
 
-        if (!orientedBlock.CanPlaceBlock(world, byPlayer, blockSel, ref failureCode))
+        BlockSelection placeSel = blockSel.Clone();
+        placeSel.Position = bracket.GetHangingSignPos(supportPos);
+        placeSel.Face = BlockFacing.DOWN;
+
+        Vintagestory.API.Common.Block occupying = world.BlockAccessor.GetBlock(placeSel.Position);
+        if (!occupying.IsReplacableBy(orientedBlock))
         {
+            failureCode = "notreplaceable";
             return false;
         }
 
-        orientedBlock.DoPlaceBlock(world, byPlayer, blockSel, itemstack);
+        orientedBlock.DoPlaceBlock(world, byPlayer, placeSel, itemstack);
         return true;
     }
 
@@ -71,18 +66,7 @@ public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavi
         ref string failureCode)
     {
         handling = EnumHandling.PreventDefault;
-
-        BlockFacing supportFace = blockSel.Face.Opposite;
-        BlockPos supportPos = blockSel.Position.AddCopy(supportFace);
-        Vintagestory.API.Common.Block supportBlock = world.BlockAccessor.GetBlock(supportPos);
-
-        if (!BracketBlock.IsBracket(supportBlock))
-        {
-            failureCode = "signageandmore:requirebracket";
-            return false;
-        }
-
-        return supportBlock.CanAttachBlockAt(world.BlockAccessor, block, supportPos, blockSel.Face);
+        return TryResolveBracket(world, blockSel, ref failureCode, out _, out _);
     }
 
     public override void OnNeighbourBlockChange(
@@ -93,7 +77,7 @@ public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavi
     {
         handled = EnumHandling.PreventDefault;
 
-        if (!HasBracketSupport(world, pos))
+        if (!BracketBlock.HasHangingSupport(world, pos))
         {
             world.BlockAccessor.BreakBlock(pos, null);
         }
@@ -130,20 +114,25 @@ public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavi
         return false;
     }
 
-    private bool HasBracketSupport(IWorldAccessor world, BlockPos pos)
+    private static bool TryResolveBracket(
+        IWorldAccessor world,
+        BlockSelection blockSel,
+        ref string failureCode,
+        out BlockPos supportPos,
+        out BracketBlock bracket)
     {
-        BlockFacing[] faces = BlockFacing.ALLFACES;
-        for (int i = 0; i < faces.Length; i++)
+        if (!BracketBlock.TryFindFromSelection(world, blockSel, out supportPos, out bracket))
         {
-            BlockFacing face = faces[i];
-            BlockPos supportPos = pos.AddCopy(face);
-            Vintagestory.API.Common.Block support = world.BlockAccessor.GetBlock(supportPos);
-            if (BracketBlock.IsBracket(support) && support.CanAttachBlockAt(world.BlockAccessor, block, supportPos, face.Opposite))
-            {
-                return true;
-            }
+            failureCode = SignageAndMoreModSystem.FailRequireBracket;
+            return false;
         }
 
-        return false;
+        if (bracket.HasHangingAttachment(world, supportPos))
+        {
+            failureCode = SignageAndMoreModSystem.FailAlreadyOccupied;
+            return false;
+        }
+
+        return true;
     }
 }

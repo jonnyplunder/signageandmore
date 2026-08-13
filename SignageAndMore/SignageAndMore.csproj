@@ -9,6 +9,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB3277</MSBuildWarningsAsMessages>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(VINTAGE_STORY)\Vintagestory.exe</StartProgram>
+    <StartArguments>--tracelog --addModPath "$(MSBuildProjectDirectory)\bin\$(Configuration)\Mods" --addOrigin "$(MSBuildProjectDirectory)\assets"</StartArguments>
+    <StartWorkingDirectory>$(VINTAGE_STORY)</StartWorkingDirectory>
   </PropertyGroup>
 
   <ItemGroup>
