@@ -12,14 +12,6 @@ public class SignageAndMoreModSystem : ModSystem
 {
     public static readonly string modID = "signageandmore";
 
-    /// <summary>
-    /// JSON entityClass for hanging lanterns. Vanilla BELantern tessellates its own mesh
-    /// and does not call BlockEntityBehavior.OnTesselation, so a 0.5 wall offset requires
-    /// a BELantern subclass rather than a behavior or shape patch.
-    /// Applied only to position=down variants (the block actually placed when hanging).
-    /// </summary>
-    public const string LanternEntityClass = "SignageAndMore.BracketLantern";
-
     public static readonly string FailRequireBracket = modID + ":Sign.RequireBracket";
     public static readonly string FailAlreadyOccupied = modID + ":Bracket.AlreadyOccupied";
 
@@ -28,7 +20,7 @@ public class SignageAndMoreModSystem : ModSystem
         api.RegisterBlockClass("SignageAndMore.BracketBlock", typeof(BracketBlock));
         api.RegisterBlockBehaviorClass("BracketMountable", typeof(BlockBehaviorBracketMountable));
         api.RegisterBlockBehaviorClass("BracketLanternHang", typeof(BlockBehaviorBracketLanternHang));
-        api.RegisterBlockEntityClass(LanternEntityClass, typeof(BELanternOnBracket));
+        api.RegisterBlockEntityClass(BELanternOnBracket.ClassName, typeof(BELanternOnBracket));
     }
 
     public override void AssetsLoaded(ICoreAPI api)
@@ -61,10 +53,9 @@ public class SignageAndMoreModSystem : ModSystem
                 InsertBehaviorFirst(api, lantern, new BlockBehaviorBracketLanternHang(lantern), emptyProperties);
             }
 
-            // Only hanging (down) lanterns render via BELantern; wall/up keep the vanilla BE.
             if (lantern.Variant["position"] == "down")
             {
-                lantern.EntityClass = LanternEntityClass;
+                lantern.EntityClass = BELanternOnBracket.ClassName;
             }
         }
     }

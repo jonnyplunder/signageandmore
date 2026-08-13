@@ -6,54 +6,42 @@ using Vintagestory.GameContent;
 namespace SignageAndMore.BlockEntity;
 
 /// <summary>
-/// Vanilla BELantern.OnTesselation draws its own mesh and returns without calling base
-/// or BlockEntityBehavior.OnTesselation, so there is no API hook to shift that mesh.
-/// This subclass is assigned only to lantern-*-down; without a supporting bracket it
-/// behaves exactly like vanilla. With a bracket, the mesh is pulled 0.5 toward the wall
-/// to line up with hanging signs (which use shapebytype offset, unavailable on lanterns).
+/// BELantern draws its own mesh and skips behaviors, so a per-placement 0.5 wall
+/// offset has to live here. Without a supporting bracket this is identical to vanilla.
 /// </summary>
 public class BELanternOnBracket : BELantern
 {
+    public const string ClassName = "SignageAndMore.BracketLantern";
+
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
-        Vec3f? offset = BracketBlock.GetLanternMeshOffset(Api.World, Pos);
-        if (offset == null)
+        if (!BracketBlock.TryGetSupportingBracket(Api.World.BlockAccessor, Pos, out _, out BracketBlock bracket))
         {
             return base.OnTesselation(mesher, tesselator);
         }
 
-        return base.OnTesselation(new TranslatedMeshPool(mesher, offset), tesselator);
+        Vec3f offset = (bracket.GetOutwardFace()?.Opposite ?? BlockFacing.NORTH).Normalf * 0.5f;
+        return base.OnTesselation(new ShiftedMesh(mesher, offset), tesselator);
     }
 
-    private sealed class TranslatedMeshPool : ITerrainMeshPool
+    private sealed class ShiftedMesh : ITerrainMeshPool
     {
         private readonly ITerrainMeshPool inner;
         private readonly Vec3f offset;
 
-        public TranslatedMeshPool(ITerrainMeshPool inner, Vec3f offset)
+        public ShiftedMesh(ITerrainMeshPool inner, Vec3f offset)
         {
             this.inner = inner;
             this.offset = offset;
         }
 
         public void AddMeshData(MeshData data, int lodLevel = 0)
-        {
-            inner.AddMeshData(Translated(data), lodLevel);
-        }
+            => inner.AddMeshData(data.Clone().Translate(offset), lodLevel);
 
         public void AddMeshData(MeshData data, float[] tfMatrix, int lodLevel = 0)
-        {
-            inner.AddMeshData(Translated(data), tfMatrix, lodLevel);
-        }
+            => inner.AddMeshData(data.Clone().Translate(offset), tfMatrix, lodLevel);
 
         public void AddMeshData(MeshData data, ColorMapData colorMapData, int lodLevel = 0)
-        {
-            inner.AddMeshData(Translated(data), colorMapData, lodLevel);
-        }
-
-        private MeshData Translated(MeshData data)
-        {
-            return data.Clone().Translate(offset);
-        }
+            => inner.AddMeshData(data.Clone().Translate(offset), colorMapData, lodLevel);
     }
 }

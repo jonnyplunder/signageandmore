@@ -26,7 +26,8 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
             return false;
         }
 
-        handling = EnumHandling.PreventDefault;
+        // Stop OmniAttachable from also running (it would set requireattachable).
+        handling = EnumHandling.PreventSubsequent;
         return TryValidateHang(world, supportPos, bracket, ref failureCode, out _);
     }
 
@@ -43,7 +44,7 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
             return false;
         }
 
-        handling = EnumHandling.PreventDefault;
+        handling = EnumHandling.PreventSubsequent;
 
         if (!TryValidateHang(world, supportPos, bracket, ref failureCode, out Vintagestory.API.Common.Block hangingLantern))
         {
@@ -74,7 +75,8 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
             return;
         }
 
-        handled = EnumHandling.PreventDefault;
+        // OmniAttachable.CanStay looks at the cell above (a multiblock dummy) and would break us.
+        handled = EnumHandling.PreventSubsequent;
     }
 
     private bool TryValidateHang(

@@ -109,22 +109,20 @@ public class BracketBlock : Vintagestory.API.Common.Block
             return true;
         }
 
-        return TryGetSupportingBracket(world, blockSel.Position, out supportPos, out bracket, out _);
+        return TryGetSupportingBracket(world.BlockAccessor, blockSel.Position, out supportPos, out bracket);
     }
 
     public static bool HasHangingSupport(IWorldAccessor world, BlockPos hangingPos)
     {
-        return TryGetSupportingBracket(world, hangingPos, out _, out _, out _);
+        return TryGetSupportingBracket(world.BlockAccessor, hangingPos, out _, out _);
     }
 
     public static bool TryGetSupportingBracket(
-        IWorldAccessor world,
+        IBlockAccessor accessor,
         BlockPos hangingPos,
         out BlockPos bracketPos,
-        out BracketBlock bracket,
-        out BlockFacing towardWall)
+        out BracketBlock bracket)
     {
-        IBlockAccessor accessor = world.BlockAccessor;
         foreach (BlockFacing hor in BlockFacing.HORIZONTALS)
         {
             for (int dist = 1; dist <= ArmLengthBlocks; dist++)
@@ -135,7 +133,6 @@ public class BracketBlock : Vintagestory.API.Common.Block
                 {
                     bracketPos = foundPos;
                     bracket = found;
-                    towardWall = hor;
                     return true;
                 }
             }
@@ -143,18 +140,7 @@ public class BracketBlock : Vintagestory.API.Common.Block
 
         bracketPos = null!;
         bracket = null!;
-        towardWall = null!;
         return false;
-    }
-
-    public static Vec3f? GetLanternMeshOffset(IWorldAccessor world, BlockPos hangingPos)
-    {
-        if (!TryGetSupportingBracket(world, hangingPos, out _, out _, out BlockFacing towardWall))
-        {
-            return null;
-        }
-
-        return towardWall.Normalf * 0.5f;
     }
 
     private IEnumerable<BlockPos> HangingSlots(BlockPos bracketPos)
