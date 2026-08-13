@@ -1,0 +1,102 @@
+{
+  "code": "bracket",
+  "class": "SignageAndMore.BracketBlock",
+  "variantgroups": [
+    { "code": "material", "states": ["iron", "copper"] },
+    { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
+  ],
+  "attributes": {
+    "mountableBlocks": [
+      "game:lantern-*",
+      "signageandmore:sign-*"
+    ],
+    "handbook": {
+      "groupBy": ["bracket-*"]
+    }
+  },
+  "behaviors": [
+    {
+      "name": "HorizontalAttachable",
+      "properties": {
+        "dropBlockFace": "north",
+        "attachmentAreas": {
+          "north": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 180 },
+          "east": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 270 },
+          "south": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 0 },
+          "west": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 90 }
+        }
+      }
+    }
+  ],
+  "shape": {
+    "base": "block/bracket/bracket_1",
+    "rotateYByType": {
+      "*-north": 0,
+      "*-east": 270,
+      "*-south": 180,
+      "*-west": 90
+    }
+  },
+  "texturesByType": {
+    "*-iron-*": {
+      "metal": { "base": "game:block/metal/lantern/iron" },
+      "rivets": { "base": "game:block/metal/riveted/iron3" },
+      "knob": { "base": "game:block/metal/sheet-plain/brass3" }
+    },
+    "*-copper-*": {
+      "metal": { "base": "game:block/metal/lantern/copper" },
+      "rivets": { "base": "game:block/metal/riveted/copper3" },
+      "knob": { "base": "game:block/metal/sheet-plain/brass3" }
+    }
+  },
+  "blockmaterial": "Metal",
+  "creativeinventory": {
+    "general": ["*-iron-north"],
+    "signageandmore": ["*-iron-north", "*-copper-north"]
+  },
+  "replaceable": 500,
+  "resistance": 2,
+  "maxStackSize": 16,
+  "lightAbsorption": 0,
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "faceCullMode": "NeverCull",
+  "doNotRenderAtLod2": true,
+  "collisionbox": null,
+  "selectionbox": {
+    "x1": 0,
+    "y1": 0,
+    "z1": 0,
+    "x2": 1,
+    "y2": 0.75,
+    "z2": 1,
+    "rotateYByType": {
+      "*-north": 0,
+      "*-east": 270,
+      "*-south": 180,
+      "*-west": 90
+    }
+  },
+  "sounds": {
+    "place": "game:block/metal",
+    "hit": "game:block/metal",
+    "break": "game:block/metal"
+  },
+  "guiTransform": {
+    "rotation": { "x": -22, "y": 135, "z": 0 },
+    "origin": { "x": 0.5, "y": 0.35, "z": 0.5 },
+    "scale": 1.2
+  },
+  "fpHandTransform": {
+    "translation": { "x": 0, "y": 0, "z": 0 },
+    "rotation": { "x": 0, "y": 0, "z": 0 },
+    "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+    "scale": 1.2
+  },
+  "tpHandTransform": {
+    "translation": { "x": -1, "y": -0.5, "z": -0.5 },
+    "rotation": { "x": 0, "y": 0, "z": -90 },
+    "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+    "scale": 0.45
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "$schema": "https://moddbcdn.vintagestory.at/schema/modinfo.latest.json",
+    "type": "Code",
+    "modid": "signageandmore",
+    "name": "Signage & More",
+    "authors": [ "FuegoFish", "RodinPandarex" ],
+    "description": "Signage and decorative blocks for Vintage Story.",
+    "version": "0.1.0",
+    "Side": "Universal",
+    "RequiredOnClient": true,
+    "RequiredOnServer": true,
+    "dependencies": {
+        "game": "1.22.0"
+    }
+}

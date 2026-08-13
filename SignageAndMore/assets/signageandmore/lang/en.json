@@ -1,0 +1,9 @@
+{
+  "game:tabname-signageandmore": "Signage & More",
+  "block-bracket-iron-*": "Iron bracket",
+  "block-bracket-copper-*": "Copper bracket",
+  "block-sign-anvil-*": "Anvil sign",
+  "block-sign-hog-*": "Hog sign",
+  "block-sign-cauldron-*": "Cauldron sign",
+  "signageandmore:requirebracket": "Must be placed on a bracket mount point"
+}

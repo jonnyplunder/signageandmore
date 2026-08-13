@@ -1,0 +1,9 @@
+{
+  "game:tabname-signageandmore": "Signage & More",
+  "block-bracket-iron-*": "Potence en fer",
+  "block-bracket-copper-*": "Potence en cuivre",
+  "block-sign-anvil-*": "Enseigne enclume",
+  "block-sign-hog-*": "Enseigne cochon",
+  "block-sign-cauldron-*": "Enseigne chaudron",
+  "signageandmore:requirebracket": "Doit être fixé sur une potence"
+}
