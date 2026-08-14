@@ -20,18 +20,18 @@
     }
   },
   "shapebytype": {
-    "*-anvil-*-north": { "base": "block/sign/anvil", "rotateY": 180, "offsetX": -0.5 },
-    "*-anvil-*-east": { "base": "block/sign/anvil", "rotateY": 90, "offsetZ": -0.5 },
-    "*-anvil-*-south": { "base": "block/sign/anvil", "rotateY": 0, "offsetX": 0.5 },
-    "*-anvil-*-west": { "base": "block/sign/anvil", "rotateY": 270, "offsetZ": 0.5 },
-    "*-hog-*-north": { "base": "block/sign/hog", "rotateY": 180, "offsetX": -0.5 },
-    "*-hog-*-east": { "base": "block/sign/hog", "rotateY": 90, "offsetZ": -0.5 },
-    "*-hog-*-south": { "base": "block/sign/hog", "rotateY": 0, "offsetX": 0.5 },
-    "*-hog-*-west": { "base": "block/sign/hog", "rotateY": 270, "offsetZ": 0.5 },
-    "*-cauldron-*-north": { "base": "block/sign/cauldron", "rotateY": 180, "offsetX": -0.5 },
-    "*-cauldron-*-east": { "base": "block/sign/cauldron", "rotateY": 90, "offsetZ": -0.5 },
-    "*-cauldron-*-south": { "base": "block/sign/cauldron", "rotateY": 0, "offsetX": 0.5 },
-    "*-cauldron-*-west": { "base": "block/sign/cauldron", "rotateY": 270, "offsetZ": 0.5 }
+    "*-anvil-*-north": { "base": "block/sign/anvil", "rotateY": 180, "offsetX": -0.8125, "offsetY": 0.203125 },
+    "*-anvil-*-east": { "base": "block/sign/anvil", "rotateY": 90, "offsetZ": -0.8125, "offsetY": 0.203125 },
+    "*-anvil-*-south": { "base": "block/sign/anvil", "rotateY": 0, "offsetX": 0.8125, "offsetY": 0.203125 },
+    "*-anvil-*-west": { "base": "block/sign/anvil", "rotateY": 270, "offsetZ": 0.8125, "offsetY": 0.203125 },
+    "*-hog-*-north": { "base": "block/sign/hog", "rotateY": 180, "offsetX": -0.8125, "offsetY": 0.203125 },
+    "*-hog-*-east": { "base": "block/sign/hog", "rotateY": 90, "offsetZ": -0.8125, "offsetY": 0.203125 },
+    "*-hog-*-south": { "base": "block/sign/hog", "rotateY": 0, "offsetX": 0.8125, "offsetY": 0.203125 },
+    "*-hog-*-west": { "base": "block/sign/hog", "rotateY": 270, "offsetZ": 0.8125, "offsetY": 0.203125 },
+    "*-cauldron-*-north": { "base": "block/sign/cauldron", "rotateY": 180, "offsetX": -0.8125, "offsetY": 0.203125 },
+    "*-cauldron-*-east": { "base": "block/sign/cauldron", "rotateY": 90, "offsetZ": -0.8125, "offsetY": 0.203125 },
+    "*-cauldron-*-south": { "base": "block/sign/cauldron", "rotateY": 0, "offsetX": 0.8125, "offsetY": 0.203125 },
+    "*-cauldron-*-west": { "base": "block/sign/cauldron", "rotateY": 270, "offsetZ": 0.8125, "offsetY": 0.203125 }
   },
   "texturesByType": {
     "*-*-iron-*": {
@@ -65,10 +65,10 @@
   "faceCullMode": "NeverCull",
   "doNotRenderAtLod2": true,
   "collisionSelectionBoxesByType": {
-    "*-north": [{ "x1": -0.5, "y1": 0, "z1": 0.4, "x2": 0.5, "y2": 1, "z2": 0.6 }],
-    "*-east": [{ "x1": 0.4, "y1": 0, "z1": -0.5, "x2": 0.6, "y2": 1, "z2": 0.5 }],
-    "*-south": [{ "x1": 0.5, "y1": 0, "z1": 0.4, "x2": 1.5, "y2": 1, "z2": 0.6 }],
-    "*-west": [{ "x1": 0.4, "y1": 0, "z1": 0.5, "x2": 0.6, "y2": 1, "z2": 1.5 }]
+    "*-north": [{ "x1": -0.8125, "y1": 0.203125, "z1": 0.4, "x2": 0.1875, "y2": 1.203125, "z2": 0.6 }],
+    "*-east": [{ "x1": 0.4, "y1": 0.203125, "z1": -0.8125, "x2": 0.6, "y2": 1.203125, "z2": 0.1875 }],
+    "*-south": [{ "x1": 0.8125, "y1": 0.203125, "z1": 0.4, "x2": 1.8125, "y2": 1.203125, "z2": 0.6 }],
+    "*-west": [{ "x1": 0.4, "y1": 0.203125, "z1": 0.8125, "x2": 0.6, "y2": 1.203125, "z2": 1.8125 }]
   },
   "combustiblePropsByType": {
     "*-*-iron-*": null,

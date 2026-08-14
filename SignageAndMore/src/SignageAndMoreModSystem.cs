@@ -18,6 +18,7 @@ public class SignageAndMoreModSystem : ModSystem
     public override void Start(ICoreAPI api)
     {
         api.RegisterBlockClass("SignageAndMore.BracketBlock", typeof(BracketBlock));
+        api.RegisterBlockClass("SignageAndMore.BlockLanternOnBracket", typeof(BlockLanternOnBracket));
         api.RegisterBlockBehaviorClass("BracketMountable", typeof(BlockBehaviorBracketMountable));
         api.RegisterBlockBehaviorClass("BracketLanternHang", typeof(BlockBehaviorBracketLanternHang));
         api.RegisterBlockEntityClass(BELanternOnBracket.ClassName, typeof(BELanternOnBracket));

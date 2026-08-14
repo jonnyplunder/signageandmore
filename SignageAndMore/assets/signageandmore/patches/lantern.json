@@ -1,11 +1,10 @@
 [
   {
     "file": "game:blocktypes/metal/lantern",
-    "op": "addmerge",
-    "path": "/selectionboxbytype",
+    "op": "add",
+    "path": "/classByType",
     "value": {
-      "*-small-down": { "x1": -0.1875, "y1": 0, "z1": -0.1875, "x2": 1.1875, "y2": 1, "z2": 1.1875 },
-      "*-large-down": { "x1": -0.25, "y1": 0, "z1": -0.25, "x2": 1.25, "y2": 1, "z2": 1.25 }
+      "*-down": "SignageAndMore.BlockLanternOnBracket"
     }
   }
 ]

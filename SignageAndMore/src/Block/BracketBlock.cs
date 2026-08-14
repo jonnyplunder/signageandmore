@@ -14,6 +14,29 @@ public class BracketBlock : Vintagestory.API.Common.Block
     /// </summary>
     public const int ArmLengthBlocks = 2;
 
+    public static Vec3f? GetHangOffset(IBlockAccessor accessor, BlockPos hangPos)
+    {
+        if (!TryGetSupportingBracket(accessor, hangPos, out _, out BracketBlock bracket))
+        {
+            return null;
+        }
+
+        Vec3f offset = (bracket.GetOutwardFace()?.Opposite ?? BlockFacing.NORTH).Normalf * 0.5f;
+        if (bracket.CollisionBoxes != null)
+        {
+            foreach (Cuboidf box in bracket.CollisionBoxes)
+            {
+                if (box.X2 - box.X1 > 1 || box.Z2 - box.Z1 > 1)
+                {
+                    offset.Y = box.Y1;
+                    break;
+                }
+            }
+        }
+
+        return offset;
+    }
+
     public override bool CanAttachBlockAt(
         IBlockAccessor blockAccessor,
         Vintagestory.API.Common.Block block,

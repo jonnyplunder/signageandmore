@@ -1,6 +1,7 @@
 using SignageAndMore.Block;
 using Vintagestory.API.Common;
 using Vintagestory.API.MathTools;
+using Vintagestory.GameContent;
 
 namespace SignageAndMore.BlockBehavior;
 
@@ -56,6 +57,14 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
         placeSel.Face = BlockFacing.DOWN;
 
         hangingLantern.DoPlaceBlock(world, byPlayer, placeSel, itemstack);
+
+        // Vanilla ceiling lanterns yaw to the player's look (22.5° steps), which twists
+        // the hook off the bracket arm. Keep the model in its native orientation.
+        if (world.BlockAccessor.GetBlockEntity(placeSel.Position) is BELantern lantern)
+        {
+            lantern.MeshAngle = 0;
+            lantern.MarkDirty(true);
+        }
         return true;
     }
 

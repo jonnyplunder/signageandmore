@@ -15,12 +15,13 @@ public class BELanternOnBracket : BELantern
 
     public override bool OnTesselation(ITerrainMeshPool mesher, ITesselatorAPI tesselator)
     {
-        if (!BracketBlock.TryGetSupportingBracket(Api.World.BlockAccessor, Pos, out _, out BracketBlock bracket))
+        Vec3f? offset = BracketBlock.GetHangOffset(Api.World.BlockAccessor, Pos);
+        if (offset == null)
         {
             return base.OnTesselation(mesher, tesselator);
         }
 
-        Vec3f offset = (bracket.GetOutwardFace()?.Opposite ?? BlockFacing.NORTH).Normalf * 0.5f;
+        MeshAngle = 0;
         return base.OnTesselation(new ShiftedMesh(mesher, offset), tesselator);
     }
 
