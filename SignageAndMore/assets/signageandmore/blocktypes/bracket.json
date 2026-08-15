@@ -26,15 +26,24 @@
           "west": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 90 }
         }
       }
+    },
+    {
+      "name": "Multiblock",
+      "propertiesByType": {
+        "*-west": { "sizex": 3, "sizey": 1, "sizez": 1, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-east": { "sizex": 3, "sizey": 1, "sizez": 1, "cposition": { "x": 2, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-north": { "sizex": 1, "sizey": 1, "sizez": 3, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-south": { "sizex": 1, "sizey": 1, "sizez": 3, "cposition": { "x": 0, "y": 0, "z": 2 }, "offsetHitboxes": true }
+      }
     }
   ],
   "shape": {
     "base": "block/bracket/bracket_1",
     "rotateYByType": {
-      "*-north": 0,
-      "*-east": 270,
-      "*-south": 180,
-      "*-west": 90
+      "*-north": 270,
+      "*-east": 180,
+      "*-south": 90,
+      "*-west": 0
     }
   },
   "texturesByType": {
@@ -62,21 +71,36 @@
   "sideopaque": { "all": false },
   "faceCullMode": "NeverCull",
   "doNotRenderAtLod2": true,
-  "collisionbox": null,
-  "selectionbox": {
-    "x1": 0,
-    "y1": 0,
-    "z1": 0,
-    "x2": 1,
-    "y2": 0.75,
-    "z2": 1,
-    "rotateYByType": {
-      "*-north": 0,
-      "*-east": 270,
-      "*-south": 180,
-      "*-west": 90
+  "collisionSelectionBoxes": [
+    {
+      "x1": 0,
+      "y1": 0.203125,
+      "z1": 0.3,
+      "x2": 0.2,
+      "y2": 1.003125,
+      "z2": 0.7,
+      "rotateYByType": {
+        "*-north": 270,
+        "*-east": 180,
+        "*-south": 90,
+        "*-west": 0
+      }
+    },
+    {
+      "x1": 0,
+      "y1": 0.203125,
+      "z1": 0.35,
+      "x2": 2.35,
+      "y2": 0.453125,
+      "z2": 0.65,
+      "rotateYByType": {
+        "*-north": 270,
+        "*-east": 180,
+        "*-south": 90,
+        "*-west": 0
+      }
     }
-  },
+  ],
   "sounds": {
     "place": "game:block/metal",
     "hit": "game:block/metal",
@@ -84,7 +108,7 @@
   },
   "guiTransform": {
     "rotation": { "x": -22, "y": 135, "z": 0 },
-    "origin": { "x": 0.5, "y": 0.35, "z": 0.5 },
+    "origin": { "x": 0.5, "y": 0.55, "z": 0.5 },
     "scale": 1.2
   },
   "fpHandTransform": {

@@ -1,0 +1,10 @@
+[
+  {
+    "file": "game:blocktypes/metal/lantern",
+    "op": "add",
+    "path": "/classByType",
+    "value": {
+      "*-down": "SignageAndMore.BlockLanternOnBracket"
+    }
+  }
+]

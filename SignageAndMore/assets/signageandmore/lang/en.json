@@ -5,5 +5,6 @@
   "block-sign-anvil-*": "Anvil sign",
   "block-sign-hog-*": "Hog sign",
   "block-sign-cauldron-*": "Cauldron sign",
-  "signageandmore:requirebracket": "Must be placed on a bracket mount point"
+  "placefailure-signageandmore:Sign.RequireBracket": "Must be placed on a bracket",
+  "placefailure-signageandmore:Bracket.AlreadyOccupied": "This bracket already has something hanging from it"
 }
