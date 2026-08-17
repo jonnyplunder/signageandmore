@@ -8,11 +8,29 @@ namespace SignageAndMore.Block;
 
 public class BracketBlock : Vintagestory.API.Common.Block
 {
-    /// <summary>
-    /// The arm occupies this many blocks beyond the wall-mounted origin cell.
-    /// Signs and lanterns hang under the far cell (origin + this offset).
-    /// </summary>
-    public const int ArmLengthBlocks = 2;
+    /// <summary>Default arm span when <c>armLengthBlocks</c> is omitted from JSON.</summary>
+    public const int DefaultArmLengthBlocks = 2;
+
+    /// <summary>Default lantern hang distance when <c>hangPoints.lantern</c> is omitted.</summary>
+    public const int DefaultLanternHangDistanceBlocks = 1;
+
+    /// <summary>Max outward steps when resolving which bracket supports a hanging block.</summary>
+    private const int MaxArmSearchBlocks = 8;
+
+    public int ArmLengthBlocks { get; private set; } = DefaultArmLengthBlocks;
+    public int LanternHangDistanceBlocks { get; private set; } = DefaultLanternHangDistanceBlocks;
+    public int SignHangDistanceBlocks { get; private set; } = DefaultArmLengthBlocks;
+
+    public override void OnLoaded(ICoreAPI api)
+    {
+        base.OnLoaded(api);
+
+        ArmLengthBlocks = Attributes?["armLengthBlocks"].AsInt(DefaultArmLengthBlocks) ?? DefaultArmLengthBlocks;
+
+        LanternHangDistanceBlocks = Attributes?["hangPoints"]["lantern"].AsInt(DefaultLanternHangDistanceBlocks)
+            ?? DefaultLanternHangDistanceBlocks;
+        SignHangDistanceBlocks = Attributes?["hangPoints"]["sign"].AsInt(ArmLengthBlocks) ?? ArmLengthBlocks;
+    }
 
     public static Vec3f? GetHangOffset(IBlockAccessor accessor, BlockPos hangPos)
     {
@@ -21,7 +39,8 @@ public class BracketBlock : Vintagestory.API.Common.Block
             return null;
         }
 
-        Vec3f offset = (bracket.GetOutwardFace()?.Opposite ?? BlockFacing.NORTH).Normalf * 0.5f;
+        // Keep the lantern centered in its hang cell; only lift to meet the arm underside.
+        Vec3f offset = new(0, 0, 0);
         if (bracket.CollisionBoxes != null)
         {
             foreach (Cuboidf box in bracket.CollisionBoxes)
@@ -95,8 +114,18 @@ public class BracketBlock : Vintagestory.API.Common.Block
 
     public BlockPos GetHangingSignPos(BlockPos bracketPos)
     {
+        return GetHangPos(bracketPos, SignHangDistanceBlocks);
+    }
+
+    public BlockPos GetHangingLanternPos(BlockPos bracketPos)
+    {
+        return GetHangPos(bracketPos, LanternHangDistanceBlocks);
+    }
+
+    private BlockPos GetHangPos(BlockPos bracketPos, int outwardDistance)
+    {
         BlockFacing outward = GetOutwardFace() ?? BlockFacing.NORTH;
-        return bracketPos.AddCopy(outward, ArmLengthBlocks).Down();
+        return bracketPos.AddCopy(outward, outwardDistance).Down();
     }
 
     public bool HasHangingAttachment(IWorldAccessor world, BlockPos bracketPos)
@@ -148,11 +177,12 @@ public class BracketBlock : Vintagestory.API.Common.Block
     {
         foreach (BlockFacing hor in BlockFacing.HORIZONTALS)
         {
-            for (int dist = 1; dist <= ArmLengthBlocks; dist++)
+            for (int dist = 1; dist <= MaxArmSearchBlocks; dist++)
             {
                 BlockPos candidate = hangingPos.UpCopy().AddCopy(hor, dist);
                 if (TryGetBracketAt(accessor, candidate, out BlockPos foundPos, out BracketBlock found)
-                    && found.GetOutwardFace() == hor.Opposite)
+                    && found.GetOutwardFace() == hor.Opposite
+                    && found.IsHangPos(foundPos, hangingPos))
                 {
                     bracketPos = foundPos;
                     bracket = found;
@@ -166,13 +196,22 @@ public class BracketBlock : Vintagestory.API.Common.Block
         return false;
     }
 
+    private bool IsHangPos(BlockPos bracketPos, BlockPos hangingPos)
+    {
+        return hangingPos == GetHangingLanternPos(bracketPos)
+            || hangingPos == GetHangingSignPos(bracketPos);
+    }
+
     private IEnumerable<BlockPos> HangingSlots(BlockPos bracketPos)
     {
-        BlockFacing outward = GetOutwardFace() ?? BlockFacing.NORTH;
-        yield return bracketPos.DownCopy();
-        for (int dist = 1; dist <= ArmLengthBlocks; dist++)
+        HashSet<BlockPos> slots = [];
+        slots.Add(bracketPos.DownCopy());
+        slots.Add(GetHangingLanternPos(bracketPos));
+        slots.Add(GetHangingSignPos(bracketPos));
+
+        foreach (BlockPos slot in slots)
         {
-            yield return bracketPos.AddCopy(outward, dist).Down();
+            yield return slot;
         }
     }
 

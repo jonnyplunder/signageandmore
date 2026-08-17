@@ -53,7 +53,7 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
         }
 
         BlockSelection placeSel = blockSel.Clone();
-        placeSel.Position = bracket.GetHangingSignPos(supportPos);
+        placeSel.Position = bracket.GetHangingLanternPos(supportPos);
         placeSel.Face = BlockFacing.DOWN;
 
         hangingLantern.DoPlaceBlock(world, byPlayer, placeSel, itemstack);
@@ -108,7 +108,7 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
             return false;
         }
 
-        BlockPos hangingPos = bracket.GetHangingSignPos(supportPos);
+        BlockPos hangingPos = bracket.GetHangingLanternPos(supportPos);
         Vintagestory.API.Common.Block occupying = world.BlockAccessor.GetBlock(hangingPos);
         if (!occupying.IsReplacableBy(hangingLantern))
         {

@@ -6,6 +6,11 @@
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation" }
   ],
   "attributes": {
+    "armLengthBlocks": 2,
+    "hangPoints": {
+      "lantern": 1,
+      "sign": 2
+    },
     "mountableBlocks": [
       "game:lantern-*",
       "signageandmore:sign-*"
