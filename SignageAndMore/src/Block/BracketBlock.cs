@@ -9,10 +9,15 @@ namespace SignageAndMore.Block;
 public class BracketBlock : Vintagestory.API.Common.Block
 {
     /// <summary>
-    /// The arm occupies this many blocks beyond the wall-mounted origin cell.
-    /// Signs and lanterns hang under the far cell (origin + this offset).
+    /// How many cells the arm spans beyond the wall-mounted origin.
+    /// Matches Multiblock size 3 (origin + this many). Signs hang under the tip.
     /// </summary>
     public const int ArmLengthBlocks = 2;
+
+    /// <summary>
+    /// Lantern hang cell: one step out from the origin (middle of the outer arm cell).
+    /// </summary>
+    public const int LanternHangDistanceBlocks = 1;
 
     public static Vec3f? GetHangOffset(IBlockAccessor accessor, BlockPos hangPos)
     {
@@ -21,7 +26,8 @@ public class BracketBlock : Vintagestory.API.Common.Block
             return null;
         }
 
-        Vec3f offset = (bracket.GetOutwardFace()?.Opposite ?? BlockFacing.NORTH).Normalf * 0.5f;
+        // Keep the lantern centered in its hang cell; only lift to meet the arm underside.
+        Vec3f offset = new(0, 0, 0);
         if (bracket.CollisionBoxes != null)
         {
             foreach (Cuboidf box in bracket.CollisionBoxes)
@@ -97,6 +103,12 @@ public class BracketBlock : Vintagestory.API.Common.Block
     {
         BlockFacing outward = GetOutwardFace() ?? BlockFacing.NORTH;
         return bracketPos.AddCopy(outward, ArmLengthBlocks).Down();
+    }
+
+    public BlockPos GetHangingLanternPos(BlockPos bracketPos)
+    {
+        BlockFacing outward = GetOutwardFace() ?? BlockFacing.NORTH;
+        return bracketPos.AddCopy(outward, LanternHangDistanceBlocks).Down();
     }
 
     public bool HasHangingAttachment(IWorldAccessor world, BlockPos bracketPos)
