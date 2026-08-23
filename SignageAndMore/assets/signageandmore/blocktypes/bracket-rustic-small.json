@@ -1,0 +1,138 @@
+{
+  "code": "bracketrusticsmall",
+  "class": "SignageAndMore.BracketBlock",
+  "variantgroups": [
+    { "code": "material", "states": [ "plain", "aged" ] },
+    { "code": "side", "loadFromProperties": "game:abstract/horizontalorientation" }
+  ],
+  "attributes": {
+    "armLengthBlocks": 2,
+    "hangPoints": {
+      "lantern": 1,
+      "sign": 1
+    },
+    "mountableBlocks": [
+      "game:lantern-*",
+      "signageandmore:guildsign-*",
+	  "signageandmore:rusticsign-*"
+    ],
+    "handbook": {
+      "groupBy": ["bracket-*"]
+    }
+  },
+  "behaviors": [
+    {
+      "name": "HorizontalAttachable",
+      "properties": {
+        "dropBlockFace": "north",
+        "attachmentAreas": {
+          "north": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 180 },
+          "east": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 270 },
+          "south": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 0 },
+          "west": { "x1": 0, "y1": 0, "z1": 15, "x2": 16, "y2": 16, "z2": 15, "rotateY": 90 }
+        }
+      }
+    },
+    {
+      "name": "Multiblock",
+      "propertiesByType": {
+        "*-west": { "sizex": 3, "sizey": 1, "sizez": 1, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-east": { "sizex": 3, "sizey": 1, "sizez": 1, "cposition": { "x": 2, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-north": { "sizex": 1, "sizey": 1, "sizez": 3, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-south": { "sizex": 1, "sizey": 1, "sizez": 3, "cposition": { "x": 0, "y": 0, "z": 2 }, "offsetHitboxes": true }
+      }
+    }
+  ],
+  "shape": {
+    "base": "block/bracket/bracket-rustic-small",
+    "rotateYByType": {
+      "*-north": 270,
+      "*-east": 180,
+      "*-south": 90,
+      "*-west": 0
+    }
+  },
+  "texturesByType": {
+    "*-plain-*": {
+      "side": { "base": "game:block/wood/firewood/side" },
+      "end": { "base": "game:block/wood/firewood/north" },
+      "trunk": { "base": "game:block/wood/treetrunk/oak" },
+	  "bark": { "base": "game:block/wood/bark/oak" },
+	  "peg": { "base": "game:block/wood/wattle" },
+	  "rope": { "base": "game:item/resource/rope" },
+    },
+	"*-aged-*": {
+      "side": { "base": "game:block/wood/firewood/aged/side" },
+      "end": { "base": "game:block/wood/firewood/aged/north" },
+      "trunk": { "base": "game:block/wood/treetrunk/aged" },
+	  "bark": { "base": "game:block/wood/bark/aged" },
+	  "peg": { "base": "game:block/wood/charred" },
+	  "rope": { "base": "game:item/resource/ropeold" },
+    }
+  },
+  "blockmaterial": "Metal",
+  "creativeinventory": {
+    "general": ["*-north"],
+    "signageandmore": ["*-north"]
+  },
+  "replaceable": 500,
+  "resistance": 2,
+  "maxStackSize": 16,
+  "lightAbsorption": 0,
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "faceCullMode": "NeverCull",
+  "doNotRenderAtLod2": true,
+  "collisionSelectionBoxes": [
+    {
+      "x1": 0,
+      "y1": -0.03125,
+      "z1": 0.1875,
+      "x2": 0.25,
+      "y2": 0.71875,
+      "z2": 0.8125,
+      "rotateYByType": {
+        "*-north": 270,
+        "*-east": 180,
+        "*-south": 90,
+        "*-west": 0
+      }
+    },
+	{
+      "x1": 0.09375,
+      "y1": 0.140625,
+      "z1": 0.375,
+      "x2": 2.3125,
+      "y2": 0.375,
+      "z2": 0.625,
+      "rotateYByType": {
+        "*-north": 270,
+        "*-east": 180,
+        "*-south": 90,
+        "*-west": 0
+      }
+    }
+  ],
+  "sounds": {
+    "place": "game:block/hewnfancegate",
+    "hit": "game:block/stickbreak",
+    "break": "game:block/stickbreak"
+  },
+  "guiTransform": {
+    "rotation": { "x": -22, "y": 135, "z": 0 },
+    "origin": { "x": 0.5, "y": 0.55, "z": 0.5 },
+    "scale": 1.2
+  },
+  "fpHandTransform": {
+    "translation": { "x": 0, "y": 0, "z": 0 },
+    "rotation": { "x": 0, "y": 0, "z": 0 },
+    "origin": { "x": 0.5, "y": 0, "z": 0.5 },
+    "scale": 1.2
+  },
+  "tpHandTransform": {
+    "translation": { "x": -1, "y": -0.5, "z": -0.5 },
+    "rotation": { "x": 0, "y": 0, "z": -90 },
+    "origin": { "x": 0.5, "y": 0.1, "z": 0.5 },
+    "scale": 0.45
+  }
+}

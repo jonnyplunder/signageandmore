@@ -1,0 +1,102 @@
+{
+  "code": "guildsign",
+  "variantgroups": [
+    { "code": "type", "states": ["anvil", "cauldron", "flagon", "gear", "hog", "tailor"] },
+    { "code": "material", "loadFromProperties": "game:block/toolmetal" },
+    { "code": "side", "loadFromProperties": "abstract/horizontalorientation", "states": [ "free" ] }
+  ],
+  "behaviors": [
+    {
+      "name": "BracketMountable",
+      "properties": {
+        "facingCode": "side",
+        "dropFacing": "free"
+      }
+    },
+	{ "name": "RightClickPickup" },
+	{ "name": "Lockable" }
+  ],
+  "attributes": {
+    "handbook": {
+      "groupBy": ["guildsign-{type}-*"]
+    }
+  },
+  "shapebytype": {
+    "*-anvil-*-north": { "base": "signageandmore:block/sign/guildsign-anvil-hanging", "rotateY": 180, "offsetY": 0.171875 },
+    "*-anvil-*-east": { "base": "signageandmore:block/sign/guildsign-anvil-hanging", "rotateY": 90, "offsetY": 0.171875 },
+    "*-anvil-*-south": { "base": "signageandmore:block/sign/guildsign-anvil-hanging", "rotateY": 0, "offsetY": 0.171875 },
+    "*-anvil-*-west": { "base": "signageandmore:block/sign/guildsign-anvil-hanging", "rotateY": 270, "offsetY": 0.171875 },
+	"*-anvil-*-free": { "base": "signageandmore:block/sign/guildsign-anvil-free" },
+	"*-cauldron-*-north": { "base": "signageandmore:block/sign/guildsign-cauldron-hanging", "rotateY": 180, "offsetY": 0.171875 },
+    "*-cauldron-*-east": { "base": "signageandmore:block/sign/guildsign-cauldron-hanging", "rotateY": 90, "offsetY": 0.171875 },
+    "*-cauldron-*-south": { "base": "signageandmore:block/sign/guildsign-cauldron-hanging", "rotateY": 0, "offsetY": 0.171875 },
+    "*-cauldron-*-west": { "base": "signageandmore:block/sign/guildsign-cauldron-hanging", "rotateY": 270, "offsetY": 0.171875 },
+	"*-cauldron-*-free": { "base": "signageandmore:block/sign/guildsign-cauldron-free" },
+	"*-flagon-*-north": { "base": "signageandmore:block/sign/guildsign-flagon-hanging", "rotateY": 180, "offsetY": 0.171875 },
+    "*-flagon-*-east": { "base": "signageandmore:block/sign/guildsign-flagon-hanging", "rotateY": 90, "offsetY": 0.171875 },
+    "*-flagon-*-south": { "base": "signageandmore:block/sign/guildsign-flagon-hanging", "rotateY": 0, "offsetY": 0.171875 },
+    "*-flagon-*-west": { "base": "signageandmore:block/sign/guildsign-flagon-hanging", "rotateY": 270, "offsetY": 0.171875 },
+	"*-flagon-*-free": { "base": "signageandmore:block/sign/guildsign-flagon-free" },
+	"*-gear-*-north": { "base": "signageandmore:block/sign/guildsign-gear-hanging", "rotateY": 180, "offsetY": 0.171875 },
+    "*-gear-*-east": { "base": "signageandmore:block/sign/guildsign-gear-hanging", "rotateY": 90, "offsetY": 0.171875 },
+    "*-gear-*-south": { "base": "signageandmore:block/sign/guildsign-gear-hanging", "rotateY": 0, "offsetY": 0.171875 },
+    "*-gear-*-west": { "base": "signageandmore:block/sign/guildsign-gear-hanging", "rotateY": 270, "offsetY": 0.171875 },
+	"*-gear-*-free": { "base": "signageandmore:block/sign/guildsign-gear-free" },
+    "*-hog-*-north": { "base": "signageandmore:block/sign/guildsign-hog-hanging", "rotateY": 180, "offsetY": 0.171875 },
+    "*-hog-*-east": { "base": "signageandmore:block/sign/guildsign-hog-hanging", "rotateY": 90, "offsetY": 0.171875 },
+    "*-hog-*-south": { "base": "signageandmore:block/sign/guildsign-hog-hanging", "rotateY": 0, "offsetY": 0.171875 },
+    "*-hog-*-west": { "base": "signageandmore:block/sign/guildsign-hog-hanging", "rotateY": 270, "offsetY": 0.171875 },
+	"*-hog-*-free": { "base": "signageandmore:block/sign/guildsign-hog-free" },
+	"*-tailor-*-north": { "base": "signageandmore:block/sign/guildsign-tailor-hanging", "rotateY": 180, "offsetY": 0.171875 },
+    "*-tailor-*-east": { "base": "signageandmore:block/sign/guildsign-tailor-hanging", "rotateY": 90, "offsetY": 0.171875 },
+    "*-tailor-*-south": { "base": "signageandmore:block/sign/guildsign-tailor-hanging", "rotateY": 0, "offsetY": 0.171875 },
+    "*-tailor-*-west": { "base": "signageandmore:block/sign/guildsign-tailor-hanging", "rotateY": 270, "offsetY": 0.171875 },
+	"*-tailor-*-free": { "base": "signageandmore:block/sign/guildsign-tailor-free" }    
+  },
+  "texturesByType": {
+    "*-free": {
+      "sign": { "base": "game:block/metal/ingot/{material}" }
+    },
+    "*": {
+      "sign": { "base": "game:block/metal/ingot/{material}" },
+      "chain": { "base": "game:block/metal/plate/{material}" }
+    }
+  },
+  "creativeinventory": {
+    "general": ["*-free"],
+    "signageandmore": ["*-free"]
+  },
+  "replaceable": 900,
+  "resistance": 1.5,
+  "maxStackSize": 16,
+  "blockmaterial": "Metal",
+  "lightAbsorption": 0,
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "faceCullMode": "NeverCull",
+  "doNotRenderAtLod2": true,
+  "collisionSelectionBoxesByType": {
+    "*-north": [{ "x1": -0.25, "y1": 0.1, "z1": 0.4, "x2": 1.05, "y2": 1.5, "z2": 0.6 }],
+    "*-east": [{ "x1": 0.4, "y1": 0.1, "z1": -0.25, "x2": 0.6, "y2": 1.5, "z2": 1.05 }],
+    "*-south": [{ "x1": -0.05, "y1": 0.1, "z1": 0.4, "x2": 1.25, "y2": 1.5, "z2": 0.6 }],
+    "*-west": [{ "x1": 0.4, "y1": 0.1, "z1": -0.05, "x2": 0.6, "y2": 1.5, "z2": 1.25 }],
+	"*-free": [{ "x1": -0.25, "y1": 0.1, "z1": 0.4, "x2": 1.05, "y2": 1.5, "z2": 0.6 }],
+  },
+  "sounds": {
+    "place": "game:block/metaldoor-place",
+    "hit": "game:block/heavymetal-hit",
+    "break": "game:block/anvil"
+  },
+  "heldTpIdleAnimation": "holdbothhandslarge",
+  "tpHandTransform": {
+		"translation": { "x": -0.6, "y": -0.45, "z": -0.2 },
+		"rotation": { "x": 100, "y": 1, "z": -75 },
+		"scale": 1
+	},
+  "guiTransform": {
+		"translation": { "x": 0, "y": -2.5, "z": 0 },
+		"rotation": { "x": -15, "y": 25, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
+		"scale": 2.25
+	}
+}

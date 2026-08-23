@@ -1,0 +1,88 @@
+{
+  "code": "rusticsign",
+  "variantgroups": [
+    { "code": "type", "states": ["blank", "anvil", "archer", "elk", "fish", "flagon", "flame", "gear", "hide", "leaf", "pot", "scroll", "staff"] },
+    { "code": "side", "loadFromProperties": "abstract/horizontalorientation", "states": [ "free" ] }
+  ],
+  "behaviors": [
+    {
+      "name": "BracketMountable",
+      "properties": {
+        "facingCode": "side",
+        "dropFacing": "free"
+      }
+    },
+	{ "name": "RightClickPickup" },
+	{ "name": "Lockable" }
+  ],
+  "attributes": {
+    "handbook": {
+      "groupBy": ["rusticsign-*"]
+    }
+  },
+  "shapebytype": {
+    "*-north": { "base": "signageandmore:block/sign/rusticsign-log-hanging", "rotateY": 180, "offsetY": -0.015625 },
+    "*-east": { "base": "signageandmore:block/sign/rusticsign-log-hanging", "rotateY": 90, "offsetY": -0.015625 },
+    "*-south": { "base": "signageandmore:block/sign/rusticsign-log-hanging", "rotateY": 0, "offsetY": -0.015625 },
+    "*-west": { "base": "signageandmore:block/sign/rusticsign-log-hanging", "rotateY": 270, "offsetY": -0.015625 },
+	"*-free": { "base": "signageandmore:block/sign/rusticsign-log-free" }
+  },
+  "texturesByType": {
+    "rusticsign-blank-*": {
+	  "wood": { "base": "game:block/wood/treetrunk/oak" },
+	  "wood2": { "base": "game:block/wood/treetrunk/oak" },
+	  "bark": { "base": "game:block/wood/bark/oak" },
+      "rope": { "base": "game:item/resource/rope" },
+      "peg": { "base": "game:block/wood/firewood/south" }
+	},
+	"*": {
+	  "wood": { "base": "game:block/wood/treetrunk/oak", "blendedOverlays": [{ "base": "signageandmore:block/sign/etched/rustic-etch-{type}", "blendMode": "Overlay" }] },
+	  "wood2": { "base": "game:block/wood/treetrunk/oak" },
+	  "bark": { "base": "game:block/wood/bark/oak" },
+      "rope": { "base": "game:item/resource/rope" },
+      "peg": { "base": "game:block/wood/firewood/south" }
+    }
+  },
+  "creativeinventory": {
+    "general": ["*-free"],
+    "signageandmore": ["*-free"]
+  },
+  "replaceable": 900,
+  "resistance": 1.5,
+  "maxStackSize": 16,
+  "blockmaterial": "Wood",
+  "combustibleProps": {
+		"burnTemperature": 700,
+		"burnDuration": 20,
+	},
+  "lightAbsorption": 0,
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "faceCullMode": "NeverCull",
+  "doNotRenderAtLod2": true,
+  "collisionSelectionBoxesByType": {
+    "*-north": [{ "x1": -0.05, "y1": -0.05, "z1": 0.4, "x2": 1.05, "y2": 1.5, "z2": 0.6 }],
+    "*-east": [{ "x1": 0.4, "y1": -0.05, "z1": -0.05, "x2": 0.6, "y2": 1.5, "z2": 1.05 }],
+    "*-south": [{ "x1": -0.05, "y1": -0.05, "z1": 0.4, "x2": 1.05, "y2": 1.5, "z2": 0.6 }],
+    "*-west": [{ "x1": 0.4, "y1": -0.05, "z1": -0.05, "x2": 0.6, "y2": 1.5, "z2": 1.05 }],
+	"*-free": [{ "x1": -0.05, "y1": -0.05, "z1": 0.4, "x2": 1.05, "y2": 1.5, "z2": 0.6 }],
+  },
+  "sounds": {
+    "place": "game:block/planks",
+    "hit": "game:block/loosestick",
+    "break": "game:block/loosestick"
+  },
+  "heldTpIdleAnimation": "holdbothhandslarge",
+  "tpHandTransform": {
+		"translation": { "x": -1.3, "y": -0.9, "z": -0.5 },
+		"rotation": { "x": 101, "y": -5, "z": -77 },
+		"scale": 0.55
+	},
+	
+  "guiTransform": {
+		"translation": { "x": 0, "y": 3.5, "z": 0 },
+		"rotation": { "x": -10, "y": -17, "z": 0 },
+		"origin": { "x": 0.5, "y": 0.4, "z": 0.5 },
+		"scaleXyz": { "x": -1.5, "y": 1.5, "z": 1.5 }
+	}
+}
