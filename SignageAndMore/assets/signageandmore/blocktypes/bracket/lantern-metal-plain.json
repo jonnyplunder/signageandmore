@@ -1,23 +1,21 @@
 {
-  "code": "bracketrusticsmall",
+  "code": "metallanternbracket-plain",
   "class": "SignageAndMore.BracketBlock",
   "variantgroups": [
-    { "code": "material", "states": [ "plain", "aged" ] },
-    { "code": "side", "loadFromProperties": "game:abstract/horizontalorientation" }
+    { "code": "material", "states": [ "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "molybdochalkos", "meteoriciron", "steel", "brass" ] },
+    { "code": "orientation", "loadFromProperties": "game:abstract/horizontalorientation" }
   ],
+
   "attributes": {
     "armLengthBlocks": 2,
     "hangPoints": {
-      "lantern": 1,
-      "sign": 1
+      "lantern": 1
     },
     "mountableBlocks": [
-      "game:lantern-*",
-      "signageandmore:guildsign-*",
-	  "signageandmore:rusticsign-*"
+      "game:lantern-*"
     ],
     "handbook": {
-      "groupBy": ["bracket-*"]
+      "groupBy": ["metallanternbracket-plain-*"]
     }
   },
   "behaviors": [
@@ -36,15 +34,15 @@
     {
       "name": "Multiblock",
       "propertiesByType": {
-        "*-west": { "sizex": 3, "sizey": 1, "sizez": 1, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
-        "*-east": { "sizex": 3, "sizey": 1, "sizez": 1, "cposition": { "x": 2, "y": 0, "z": 0 }, "offsetHitboxes": true },
-        "*-north": { "sizex": 1, "sizey": 1, "sizez": 3, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
-        "*-south": { "sizex": 1, "sizey": 1, "sizez": 3, "cposition": { "x": 0, "y": 0, "z": 2 }, "offsetHitboxes": true }
+        "*-west": { "sizex": 2, "sizey": 1, "sizez": 1, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-east": { "sizex": 2, "sizey": 1, "sizez": 1, "cposition": { "x": 2, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-north": { "sizex": 1, "sizey": 1, "sizez": 2, "cposition": { "x": 0, "y": 0, "z": 0 }, "offsetHitboxes": true },
+        "*-south": { "sizex": 1, "sizey": 1, "sizez": 2, "cposition": { "x": 0, "y": 0, "z": 2 }, "offsetHitboxes": true }
       }
     }
   ],
   "shape": {
-    "base": "block/bracket/bracket-rustic-small",
+    "base": "block/bracket/lantern-metal-plain",
     "rotateYByType": {
       "*-north": 270,
       "*-east": 180,
@@ -53,21 +51,9 @@
     }
   },
   "texturesByType": {
-    "*-plain-*": {
-      "side": { "base": "game:block/wood/firewood/side" },
-      "end": { "base": "game:block/wood/firewood/north" },
-      "trunk": { "base": "game:block/wood/treetrunk/oak" },
-	  "bark": { "base": "game:block/wood/bark/oak" },
-	  "peg": { "base": "game:block/wood/wattle" },
-	  "rope": { "base": "game:item/resource/rope" },
-    },
-	"*-aged-*": {
-      "side": { "base": "game:block/wood/firewood/aged/side" },
-      "end": { "base": "game:block/wood/firewood/aged/north" },
-      "trunk": { "base": "game:block/wood/treetrunk/aged" },
-	  "bark": { "base": "game:block/wood/bark/aged" },
-	  "peg": { "base": "game:block/wood/charred" },
-	  "rope": { "base": "game:item/resource/ropeold" },
+    "*": {
+      "metal": { "base": "game:block/metal/sheet-plain/{material}*" },
+      "rivets": { "base": "game:block/metal/riveted/{material}*" }
     }
   },
   "blockmaterial": "Metal",
@@ -86,24 +72,10 @@
   "collisionSelectionBoxes": [
     {
       "x1": 0,
-      "y1": -0.03125,
-      "z1": 0.1875,
-      "x2": 0.25,
-      "y2": 0.71875,
-      "z2": 0.8125,
-      "rotateYByType": {
-        "*-north": 270,
-        "*-east": 180,
-        "*-south": 90,
-        "*-west": 0
-      }
-    },
-	{
-      "x1": 0.09375,
-      "y1": 0.140625,
+      "y1": 0,
       "z1": 0.375,
-      "x2": 2.3125,
-      "y2": 0.375,
+      "x2": 1.625,
+      "y2": 1,
       "z2": 0.625,
       "rotateYByType": {
         "*-north": 270,
@@ -114,9 +86,9 @@
     }
   ],
   "sounds": {
-    "place": "game:block/hewnfancegate",
-    "hit": "game:block/stickbreak",
-    "break": "game:block/stickbreak"
+    "place": "game:effect/anvilhit",
+    "hit": "game:effect/crusher-impact",
+    "break": "game:block/anvil"
   },
   "guiTransform": {
     "rotation": { "x": -22, "y": 135, "z": 0 },

@@ -1,0 +1,23 @@
+[
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal", "allowedVariants": [ "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "molybdochalkos", "meteoriciron", "steel", "brass" ] },
+	"pattern": [[
+		"######",
+		"######",
+		"##____",
+		"##____",
+		"##____",
+		"##____",
+	], [
+		"######",
+		"######",
+		"##____",
+		"##____",
+		"##____",
+		"##____",
+	]],
+	"name": "Angle strut",
+	"code": "1x-angle-strut-{metal}",
+	"output": { "type": "item", "code": "signageandmore:angle-strut-{metal}" }
+}
+]

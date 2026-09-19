@@ -1,0 +1,13 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal", "allowedVariants": [ "brass", "molybdochalkos" ] },
+	"pattern": [[
+		"##########",
+		"##########",
+	],[
+		"##########",
+		"##########",
+	]],
+	"name": "rod",
+	"code": "rot-{metal}",
+	"output": { "type": "item", "code": "rod-{metal}"   }
+}

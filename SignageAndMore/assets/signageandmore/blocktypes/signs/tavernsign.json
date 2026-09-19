@@ -1,0 +1,78 @@
+{
+  "code": "tavernsign",
+  "variantgroups": [
+    { "code": "type", "states": ["blank", "bear", "elk", "pig", "moon", "stew", "tree"] },
+    { "code": "side", "loadFromProperties": "abstract/horizontalorientation", "states": [ "free" ] }
+  ],
+  "behaviors": [
+    {
+      "name": "BracketMountable",
+      "properties": {
+        "facingCode": "side",
+        "dropFacing": "free"
+      }
+    },
+	{ "name": "RightClickPickup" },
+	{ "name": "Lockable" }
+  ],
+  "attributes": {
+    "handbook": {
+      "groupBy": ["tavernsign-*"]
+    }
+  },
+  "shapebytype": {
+    "*-north": { "base": "signageandmore:block/sign/tavernsign-hanging", "rotateY": 180, "offsetY": 0.1875, "offsetX": -0.375 },
+    "*-east": { "base": "signageandmore:block/sign/tavernsign-hanging", "rotateY": 90, "offsetY": 0.1875, "offsetZ": -0.375 },
+    "*-south": { "base": "signageandmore:block/sign/tavernsign-hanging", "rotateY": 0, "offsetY": 0.1875, "offsetX": 0.375 },
+    "*-west": { "base": "signageandmore:block/sign/tavernsign-hanging", "rotateY": 270, "offsetY": 0.1875, "offsetZ": 0.375 },
+	"*-free": { "base": "signageandmore:block/sign/tavernsign-free" }
+  },
+  "textures": {
+	  "wood": { "base": "game:block/wood/debarked/mahogany" },
+	  "metal": { "base": "game:block/metal/sheet-plain/molybdochalkos3" },
+      "chain": { "base": "game:block/metal/plate/lead" },
+      "sign": { "base": "signageandmore:block/sign/tavern/{type}" }
+  },
+  "creativeinventory": {
+    "general": ["*-free"],
+    "signageandmore": ["*-free"]
+  },
+  "replaceable": 900,
+  "resistance": 1.5,
+  "maxStackSize": 16,
+  "blockmaterial": "Wood",
+  "combustibleProps": {
+		"burnTemperature": 700,
+		"burnDuration": 20,
+	},
+  "lightAbsorption": 0,
+  "sidesolid": { "all": false },
+  "sideopaque": { "all": false },
+  "faceCullMode": "NeverCull",
+  "doNotRenderAtLod2": true,
+  "collisionSelectionBoxesByType": {
+    "*-north": [{ "x1": -0.8125, "y1": -1.25, "z1": 0.4, "x2": 1.0625, "y2": 1, "z2": 0.6 }],
+    "*-east": [{ "x1": 0.4, "y1": -1.25, "z1": -0.8125, "x2": 0.6, "y2": 1, "z2": 1.0625 }],
+    "*-south": [{ "x1": -0.0625, "y1": -1.25, "z1": 0.4, "x2": 1.8125, "y2": 1, "z2": 0.6 }],
+    "*-west": [{ "x1": 0.4, "y1": -1.25, "z1": -0.0625, "x2": 0.6, "y2": 1, "z2": 1.8125 }],
+	"*-free": [{ "x1": -0.05, "y1": -1.25, "z1": 0.4, "x2": 1.05, "y2": 1, "z2": 0.6 }],
+  },
+  "sounds": {
+    "place": "game:held/shieldblock-wood-heavy",
+    "hit": "game:held/shieldblock-wood-light",
+    "break": "game:held/shieldblock-wood-heavy"
+  },
+  "heldTpIdleAnimation": "holdbothhandslarge",
+  "tpHandTransform": {
+		"translation": { "x": -0.13, "y": -1.9, "z": -1.3 },
+		"rotation": { "x": 95, "y": -14, "z": -76 },
+		"scale": 0.35
+	},
+	
+  "guiTransform": {
+		"translation": { "x": -0.1, "y": 0, "z": 0 },
+		"rotation": { "x": 10, "y": 15, "z": -3 },
+		"origin": { "x": 0.5, "y": 0.95, "z": 0.5 },
+		"scaleXyz": { "x": -0.85, "y": 0.85, "z": 0.85 }
+	}
+}

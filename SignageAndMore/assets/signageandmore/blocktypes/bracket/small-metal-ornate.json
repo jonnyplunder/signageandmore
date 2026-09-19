@@ -1,10 +1,12 @@
 {
-  "code": "bracketmetalsmall",
+  "code": "smallmetalbracket-ornate",
   "class": "SignageAndMore.BracketBlock",
   "variantgroups": [
-    { "code": "material", "states": [ "bismuthbronze", "blackbronze", "brass", "copper", "gold", "iron", "meteoriciron", "molybdochalkos", "silver", "steel", "tinbronze" ] },
+    { "code": "material", "states": [ "copper", "tinbronze", "bismuthbronze", "blackbronze", "gold", "silver", "iron", "molybdochalkos", "meteoriciron", "steel", "brass" ] },
+	{ "code": "knob", "states": [ "blackbronze", "gold", "silver", "brass", "electrum" ] },
     { "code": "side", "loadFromProperties": "game:abstract/horizontalorientation" }
   ],
+
   "attributes": {
     "armLengthBlocks": 2,
     "hangPoints": {
@@ -17,7 +19,7 @@
 	  "signageandmore:rusticsign-*"
     ],
     "handbook": {
-      "groupBy": ["bracket-*"]
+      "groupBy": ["smallmetalbracket-ornate-*"]
     }
   },
   "behaviors": [
@@ -44,7 +46,7 @@
     }
   ],
   "shape": {
-    "base": "block/bracket/bracket-metal-small",
+    "base": "block/bracket/small-metal-ornate",
     "rotateYByType": {
       "*-north": 270,
       "*-east": 180,
@@ -56,7 +58,7 @@
     "*": {
       "metal": { "base": "game:block/metal/lantern/{material}" },
       "rivets": { "base": "game:block/metal/riveted/{material}*" },
-      "knob": { "base": "game:block/metal/sheet-plain/brass3" }
+      "knob": { "base": "game:block/metal/sheet-plain/{knob}*" }
     }
   },
   "blockmaterial": "Metal",
@@ -89,11 +91,11 @@
     },
 	{
       "x1": 0.0625,
-      "y1": 0.09375,
-      "z1": 0.34375,
+      "y1": 0.1875,
+      "z1": 0.4375,
       "x2": 2.40625,
-      "y2": 0.4375,
-      "z2": 0.65625,
+      "y2": 0.3125,
+      "z2": 0.5625,
       "rotateYByType": {
         "*-north": 270,
         "*-east": 180,

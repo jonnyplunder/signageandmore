@@ -1,0 +1,67 @@
+{
+	"code": "knob",
+	"behaviors": [
+		{ "name": "GroundStorable", "properties": { "layout": "Quadrants", "collisionBox": { "x1": 0.0625, "y1": 0, "z1": 0.0625, "x2": 0.9375, "y2": 0.1875, "z2": 0.9375 } } }
+	],
+	"variantgroups": [
+		{ "code": "metal", "states": ["blackbronze", "gold", "silver", "brass", "electrum" ] },
+	],
+	"shape": { "base": "item/part/knob" },
+	"textures": {
+		"metal": { "base": "game:block/metal/plate/{metal}" },
+		"screw": { "base": "game:block/metal/ingot/{metal}" }
+	},
+	"attributes": {
+		"shelvable": true,
+		"forgable": true,
+        "groundStorageTransform": {
+			"translation": { "x": 0, "y": 0.015, "z": 0 },
+			"rotation": { "x": 0, "y": 33, "z": 0 }
+		},
+		"onTongTransform": {
+			"translation": { "x": -1.28, "y": -0.49, "z": -0.55 },
+			"rotation": { "x": 0, "y": -90, "z": 0 },
+			"scale": 0.8
+		},
+		"handbook": {
+			"groupBy": ["knob-*"]
+		},
+		"tongOpening": "medium",
+		"onMetalTongTransform": {
+			"translation": { "x": -0.99, "y": -0.2, "z": -0.55 },
+			"rotation": { "x": 87, "y": 13, "z": 91 },
+			"origin": { "x": 0.5, "y": 0.08, "z": 0.5 }
+		}
+	},
+	"maxstacksize": 16,
+	"creativeinventory": {
+		"general": ["*"],
+		"signageandmore": ["*"]
+	},
+	"materialDensityByType": {
+		"*-brass": 8500,
+		"*-blackbronze": 9000,
+		"*-meteoriciron": 7800,
+		"*-electrum": 8900,
+		"*-gold": 19300,
+		"*-silver": 10500
+	},
+	"guiTransform": {
+		"translation": { "x": -5, "y": -5, "z": 0 },
+		"rotation": { "x": -40, "y": 30, "z": -20 },
+		"origin": { "x": 0.7, "y": 0.6, "z": 0 },
+		"scaleXyz": { "x": -3, "y": 3, "z": 3 }
+	},
+	"groundTransform": {
+		"translation": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 0, "z": 0 },
+		"origin": { "x": 0.5, "y": -0, "z": 0.5 },
+		"scale": 4
+	},
+	"tpHandTransform": {
+		"translation": { "x": -0.9, "y": -0.05, "z": -0.78 },
+		"rotation": { "x": 85, "y": 0, "z": 2 },
+		"origin": { "x": 0.5, "y": 0, "z": 0.5 },
+		"scale": 0.68
+	}
+}

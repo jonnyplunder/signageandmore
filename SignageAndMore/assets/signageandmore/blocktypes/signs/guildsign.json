@@ -83,7 +83,7 @@
 	"*-free": [{ "x1": -0.25, "y1": 0.1, "z1": 0.4, "x2": 1.05, "y2": 1.5, "z2": 0.6 }],
   },
   "sounds": {
-    "place": "game:block/metaldoor-place",
+    "place": "game:effect/latch",
     "hit": "game:block/heavymetal-hit",
     "break": "game:block/anvil"
   },

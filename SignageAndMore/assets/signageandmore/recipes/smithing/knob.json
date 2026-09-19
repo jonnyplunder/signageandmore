@@ -1,0 +1,26 @@
+{
+	"ingredient": { "type": "item", "code": "game:ingot-*", "name": "metal", "allowedVariants": [ "blackbronze", "gold", "silver", "brass", "electrum" ] },
+	"pattern": [[
+		"###_###_###",
+		"###_###_###",
+		"###_###_###",
+	],
+	[
+		"###_###_###",
+		"###_###_###",
+		"###_###_###",
+	],
+	[
+		"###_###_###",
+		"###_###_###",
+		"###_###_###",
+	],
+	[
+		"___________",
+		"_#___#___#_",
+		"___________",
+	]],
+	"name": "3 decorative knobs",
+	"code": "3x-knob-{metal}",
+	"output": { "type": "item", "code": "signageandmore:knob-{metal}", "stacksize": 3 }
+}

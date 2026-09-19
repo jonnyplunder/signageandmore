@@ -1,7 +1,7 @@
 {
   "code": "rusticsign",
   "variantgroups": [
-    { "code": "type", "states": ["blank", "anvil", "archer", "elk", "fish", "flagon", "flame", "gear", "hide", "leaf", "pot", "scroll", "staff"] },
+    { "code": "type", "states": ["blank", "anvil", "archer", "elk", "fish", "flagon", "flame", "gear", "hide", "leaf", "pot", "scroll", "skull", "staff", "tree"] },
     { "code": "side", "loadFromProperties": "abstract/horizontalorientation", "states": [ "free" ] }
   ],
   "behaviors": [
@@ -70,7 +70,7 @@
   "sounds": {
     "place": "game:block/planks",
     "hit": "game:block/loosestick",
-    "break": "game:block/loosestick"
+    "break": "game:effect/toolbreak"
   },
   "heldTpIdleAnimation": "holdbothhandslarge",
   "tpHandTransform": {
