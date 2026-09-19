@@ -114,7 +114,7 @@ public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavi
         return false;
     }
 
-    private static bool TryResolveBracket(
+    private bool TryResolveBracket(
         IWorldAccessor world,
         BlockSelection blockSel,
         ref string failureCode,
@@ -124,6 +124,12 @@ public class BlockBehaviorBracketMountable : Vintagestory.API.Common.BlockBehavi
         if (!BracketBlock.TryFindFromSelection(world, blockSel, out supportPos, out bracket))
         {
             failureCode = SignageAndMoreModSystem.FailRequireBracket;
+            return false;
+        }
+
+        if (!bracket.Allows(block))
+        {
+            failureCode = SignageAndMoreModSystem.FailNotAccepted;
             return false;
         }
 

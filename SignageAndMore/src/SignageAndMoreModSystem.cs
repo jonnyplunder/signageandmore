@@ -14,6 +14,7 @@ public class SignageAndMoreModSystem : ModSystem
 
     public static readonly string FailRequireBracket = modID + ":Sign.RequireBracket";
     public static readonly string FailAlreadyOccupied = modID + ":Bracket.AlreadyOccupied";
+    public static readonly string FailNotAccepted = modID + ":Bracket.NotAccepted";
 
     public override void Start(ICoreAPI api)
     {
@@ -26,15 +27,6 @@ public class SignageAndMoreModSystem : ModSystem
 
     public override void AssetsLoaded(ICoreAPI api)
     {
-        foreach (Vintagestory.API.Common.Block block in api.World.Blocks)
-        {
-            if (block is BracketBlock)
-            {
-                MountableBlockConfig.Load(block.Attributes);
-                break;
-            }
-        }
-
         api.Logger.Notification("Signage & More loaded.");
     }
 
