@@ -21,6 +21,8 @@ public class BracketBlock : Vintagestory.API.Common.Block
     public int LanternHangDistanceBlocks { get; private set; } = DefaultLanternHangDistanceBlocks;
     public int SignHangDistanceBlocks { get; private set; } = DefaultArmLengthBlocks;
 
+    private string[] mountablePatterns = MountableBlockConfig.DefaultPatterns;
+
     public override void OnLoaded(ICoreAPI api)
     {
         base.OnLoaded(api);
@@ -30,6 +32,13 @@ public class BracketBlock : Vintagestory.API.Common.Block
         LanternHangDistanceBlocks = Attributes?["hangPoints"]["lantern"].AsInt(DefaultLanternHangDistanceBlocks)
             ?? DefaultLanternHangDistanceBlocks;
         SignHangDistanceBlocks = Attributes?["hangPoints"]["sign"].AsInt(ArmLengthBlocks) ?? ArmLengthBlocks;
+
+        mountablePatterns = MountableBlockConfig.ReadPatterns(Attributes);
+    }
+
+    public bool Allows(Vintagestory.API.Common.Block block)
+    {
+        return MountableBlockConfig.Matches(mountablePatterns, block);
     }
 
     public static Vec3f? GetHangOffset(IBlockAccessor accessor, BlockPos hangPos)
@@ -65,7 +74,7 @@ public class BracketBlock : Vintagestory.API.Common.Block
     {
         // Signs and lanterns are placed by our behaviors at the hang slot.
         // Vanilla attach (OmniAttachable) would hang a second lantern under the base.
-        if (MountableBlockConfig.IsMountable(block))
+        if (MountableBlockConfig.IsHangingAttachment(block))
         {
             return false;
         }
@@ -78,7 +87,7 @@ public class BracketBlock : Vintagestory.API.Common.Block
         foreach (BlockPos slot in HangingSlots(pos))
         {
             Vintagestory.API.Common.Block mounted = world.BlockAccessor.GetBlock(slot);
-            if (MountableBlockConfig.IsMountable(mounted))
+            if (MountableBlockConfig.IsHangingAttachment(mounted))
             {
                 world.BlockAccessor.BreakBlock(slot, null);
             }
@@ -133,7 +142,7 @@ public class BracketBlock : Vintagestory.API.Common.Block
         IBlockAccessor accessor = world.BlockAccessor;
         foreach (BlockPos slot in HangingSlots(bracketPos))
         {
-            if (MountableBlockConfig.IsMountable(accessor.GetBlock(slot)))
+            if (MountableBlockConfig.IsHangingAttachment(accessor.GetBlock(slot)))
             {
                 return true;
             }

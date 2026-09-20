@@ -22,7 +22,8 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
         ref EnumHandling handling,
         ref string failureCode)
     {
-        if (!BracketBlock.TryFindFromSelection(world, blockSel, out BlockPos supportPos, out BracketBlock bracket))
+        if (!BracketBlock.TryFindFromSelection(world, blockSel, out BlockPos supportPos, out BracketBlock bracket)
+            || !bracket.Allows(block))
         {
             return false;
         }
@@ -40,7 +41,8 @@ public class BlockBehaviorBracketLanternHang : Vintagestory.API.Common.BlockBeha
         ref EnumHandling handling,
         ref string failureCode)
     {
-        if (!BracketBlock.TryFindFromSelection(world, blockSel, out BlockPos supportPos, out BracketBlock bracket))
+        if (!BracketBlock.TryFindFromSelection(world, blockSel, out BlockPos supportPos, out BracketBlock bracket)
+            || !bracket.Allows(block))
         {
             return false;
         }

@@ -6,27 +6,32 @@ namespace SignageAndMore.Config;
 
 public static class MountableBlockConfig
 {
-    private static readonly string[] DefaultPatterns =
+    public static readonly string[] DefaultPatterns =
     [
         "game:lantern-*",
-        "signageandmore:sign-*"
+        "signageandmore:sign-*",
+        "signageandmore:guildsign-*",
+        "signageandmore:rusticsign-*",
+        "signageandmore:tavernsign-*"
     ];
 
-    private static string[] patterns = DefaultPatterns;
-
-    public static void Load(JsonObject? attributes)
+    public static string[] ReadPatterns(JsonObject? attributes)
     {
         if (attributes?["mountableBlocks"].Exists == true)
         {
             string?[]? fromJson = attributes["mountableBlocks"].AsArray<string>();
             if (fromJson is { Length: > 0 })
             {
-                patterns = Array.ConvertAll(fromJson, static s => s ?? string.Empty);
-                return;
+                return Array.ConvertAll(fromJson, static s => s ?? string.Empty);
             }
         }
 
-        patterns = DefaultPatterns;
+        return DefaultPatterns;
+    }
+
+    public static bool Matches(string[] patterns, Vintagestory.API.Common.Block block)
+    {
+        return block?.Code != null && WildcardUtil.Match(patterns, block.Code.ToString());
     }
 
     public static bool IsLantern(Vintagestory.API.Common.Block block)
@@ -34,8 +39,8 @@ public static class MountableBlockConfig
         return block?.Code != null && WildcardUtil.Match("game:lantern-*", block.Code.ToString());
     }
 
-    public static bool IsMountable(Vintagestory.API.Common.Block block)
+    public static bool IsHangingAttachment(Vintagestory.API.Common.Block block)
     {
-        return block?.Code != null && WildcardUtil.Match(patterns, block.Code.ToString());
+        return Matches(DefaultPatterns, block);
     }
 }

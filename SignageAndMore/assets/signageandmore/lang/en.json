@@ -215,5 +215,6 @@
   "blockdesc-tavernsign-tree-*": "The Old Oak",
   
   "placefailure-signageandmore:Sign.RequireBracket": "Must be placed on a bracket",
-  "placefailure-signageandmore:Bracket.AlreadyOccupied": "This bracket already has something hanging from it"
+  "placefailure-signageandmore:Bracket.AlreadyOccupied": "This bracket already has something hanging from it",
+  "placefailure-signageandmore:Bracket.NotAccepted": "This bracket cannot hold that"
 }
